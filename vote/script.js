@@ -6,7 +6,7 @@ class Voter {
         this.voteField = this._element.querySelector('.vote');
         //this.voteUpButton = this._element.querySelector('.up');
         this.voteDownButton = this._element.querySelector('.down');
-        this._element.addEventListener('click', this._vote.bind(this), event);
+        this._element.addEventListener('click', this._vote.bind(this));
         this._element.onmousedown = () => false;
 
     }
