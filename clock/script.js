@@ -4,8 +4,8 @@ class Clock {
     constructor(options) {
         this._elem = options;
         this._render();
-        document.querySelector('.button--start').addEventListener('click', this.start.bind(this));
-        document.querySelector('.button--stop').addEventListener('click', this.stop.bind(this));
+        this._elem.addEventListener('click', this.listener.bind(this));
+        //document.querySelector('.button--stop').addEventListener('click', ()=> this.stop.bind(this));
     }
     _render() {
         let date = new Date();
@@ -19,9 +19,27 @@ class Clock {
         let sec = date.getSeconds();
         if (sec < 10) sec = '0' + sec;
 
-        let output = `<span class="hour">${hours}</span>:<span class="min">${min}</span>:<span class="sec">${sec}</span>`;
+        let output = `<span class="hour">${hours}</span>:<span class="min">${min}</span>:<span class="sec">${sec}</span>
+        <div>
+        <input type="button" class="button--start" value="Старт">
+        <input type="button" class="button--stop" value="Стоп">
+        <input type="button" onclick="alert('Часы должны останавливаться во время alert,\\nи продолжать корректно работать после нажатия на ОК')" value="alert для проверки корректного возобновления">
+        </div>`;
         this._elem.innerHTML = output;
     }
+
+    listener(event) {
+        let target = event.target;
+
+        if (target.tagName != 'INPUT') return;
+        if (target.closest('.button--start')) {
+            this.start();
+        }
+        if (target.closest('.button--stop')) {
+            this.stop();
+        }
+    }
+
     start() {
 
         this._render();

@@ -18,7 +18,7 @@ class CheckedList {
         let target = event.target;
 
         // возможно, клик был внутри списка UL, но вне элементов LI
-        if (target.tagName != "LI") return;
+        if (target.tagName != 'LI') return;
 
         // для Mac проверяем Cmd, т.к. Ctrl + click там контекстное меню
         if (event.metaKey || event.ctrlKey) {
@@ -38,15 +38,15 @@ class CheckedList {
 
     _selectFromLast(target) {
         const startElem = this.lastClickedLi || this.element.children[0];
-
         const isLastClickedBefore = startElem.compareDocumentPosition(target) & 4;
+        let elem;
 
         if (isLastClickedBefore) {
-            for (var elem = startElem; elem != target; elem = elem.nextElementSibling) {
+            for (elem = startElem; elem != target; elem = elem.nextElementSibling) {
                 elem.classList.add('selected');
             }
         } else {
-            for (var elem = startElem; elem != target; elem = elem.previousElementSibling) {
+            for (elem = startElem; elem != target; elem = elem.previousElementSibling) {
                 elem.classList.add('selected');
             }
         }
@@ -77,6 +77,6 @@ class CheckedList {
     }
 }
 
-let items = ["Кристофер Робин", "Винни-Пух", "Ослик Иа", "Мудрая Сова", "Кролик. Просто кролик."];
+let items = ['Кристофер Робин', 'Винни-Пух', 'Ослик Иа', 'Мудрая Сова', 'Кролик. Просто кролик.'];
 
 let checkedList = new CheckedList({elem: document.querySelector('ul')}, items);
